@@ -15,8 +15,8 @@ public class UserInfoDAO {
 	@Autowired
 	private EntityManager entityManager;
 
-	public boolean addUserInfo( int userId, String name, String gender, Date birthday) {
-		UserInfo info = new UserInfo(userId, name, gender, birthday);
+	public boolean addUserInfo( long userId) {
+		UserInfo info = new UserInfo((int)userId, null, null, null);
 		entityManager.persist(info);
 		return true;
 	}

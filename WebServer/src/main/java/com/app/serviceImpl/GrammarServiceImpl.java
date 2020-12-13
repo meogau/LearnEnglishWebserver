@@ -39,4 +39,9 @@ public class GrammarServiceImpl implements GrammarService {
 		return grammarDAO.findGrammarById(grammarId);
 	}
 
+	@Override
+	public Grammar updateGrammar(Grammar grammar) {
+		return grammarDAO.updateGrammar(grammar);
+	}
+
 }

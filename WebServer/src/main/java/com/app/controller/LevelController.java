@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import com.app.entity.Level;
 import com.app.requestEntity.AddLevelRequest;
 import com.app.service.LevelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,26 @@ public class LevelController {
 		return ResponseEntity.ok(levelService.getListLevel());
 
 	}
+
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@RequestMapping(value = "find-level-by-id/{levelId}")
 	public ResponseEntity<?> findLevelById(@PathVariable int levelId) {
 
 		return ResponseEntity.ok(levelService.findLevelById(levelId));
 
 	}
+
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@RequestMapping(value = "delete-level/{levelId}")
 	public ResponseEntity<?> deleteLevel(@PathVariable int levelId) {
 		return ResponseEntity.ok(levelService.deleteLevel(levelId));
+
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@RequestMapping(value = "update-level")
+	public ResponseEntity<?> updateLevel(@RequestBody Level level) {
+		return ResponseEntity.ok(levelService.updateLevel(level));
 
 	}
 

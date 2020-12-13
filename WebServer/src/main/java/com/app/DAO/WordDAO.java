@@ -40,4 +40,9 @@ public class WordDAO {
        return word;
 	}
 
+	public Word updateWord(Word word){
+		entityManager.merge(word);
+		return word;
+	}
+
 }

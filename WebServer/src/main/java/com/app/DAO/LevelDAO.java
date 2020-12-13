@@ -38,5 +38,9 @@ public class LevelDAO {
 		return level;
 
 	}
+	public Level updateLevel(Level level){
+		entityManager.merge(level);
+		return level;
+	}
 
 }

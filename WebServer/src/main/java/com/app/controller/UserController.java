@@ -21,13 +21,7 @@ public class UserController {
    public ResponseEntity<?> getListGrammar(@PathVariable int userId){
        return ResponseEntity.ok(userService.getUserInfo(userId));
    }
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-    @RequestMapping("/add-user-info")
-    public ResponseEntity<?> addUserInfo(@RequestBody AddUserInfoRequest addUserInfoRequest){
 
-        return ResponseEntity.ok(userService.addUserInfo(addUserInfoRequest.getUserId(),addUserInfoRequest.getName(),
-                addUserInfoRequest.getGender(),addUserInfoRequest.getBirthday()));
-    }
     @RequestMapping("/get-rank-10")
     public ResponseEntity<?> getRank10(){
 

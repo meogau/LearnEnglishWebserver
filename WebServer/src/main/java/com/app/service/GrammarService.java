@@ -10,4 +10,5 @@ public interface GrammarService {
  public List<Grammar> getListGrammarInLevel(int levelId);
  public Grammar deleteGrammar(int grammarId);
  public Grammar findGrammarById(int grammarId);
+ public Grammar updateGrammar(Grammar grammar);
 }

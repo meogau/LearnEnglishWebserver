@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import com.app.entity.Word;
 import com.app.requestEntity.AddWordRequest;
 import com.app.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,11 @@ public class WordController {
 	@GetMapping("/find-word-by-id/{wordId}")
 	public ResponseEntity<?> findWordById(@PathVariable int wordId) {
 		return ResponseEntity.ok(wordService.findWordById(wordId));
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@GetMapping("/update-word")
+	public ResponseEntity<?> updateWord(@RequestBody Word word) {
+		return ResponseEntity.ok(wordService.updateWord(word));
 	}
 }

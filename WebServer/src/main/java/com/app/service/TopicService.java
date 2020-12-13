@@ -10,4 +10,5 @@ public interface TopicService {
 	 public List<Topic> getListTopic(int levelId);
 	public Topic deleteTopic(int topicId);
 	public Topic findTopicById(int topicId);
+	public Topic updateTopic(Topic topic);
 }

@@ -38,4 +38,9 @@ private LevelDAO levelDAO;
 		return levelDAO.deleteLevel(levelId);
 	}
 
+	@Override
+	public Level updateLevel(Level level) {
+		return levelDAO.updateLevel(level);
+	}
+
 }

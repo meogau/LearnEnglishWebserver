@@ -10,4 +10,5 @@ public interface LevelService {
  public List<Level> getListLevel();
  public Level findLevelById(int levelId);
  public Level deleteLevel(int levelId);
+ public Level updateLevel(Level level);
 }

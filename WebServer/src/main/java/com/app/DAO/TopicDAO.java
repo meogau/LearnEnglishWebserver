@@ -1,5 +1,6 @@
 package com.app.DAO;
 
+import com.app.entity.Level;
 import com.app.entity.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,6 +44,11 @@ public class TopicDAO {
 			return topic;
 		}
 
+	}
+
+	public Topic updateTopic(Topic topic){
+		entityManager.merge(topic);
+		return topic;
 	}
 	
 }

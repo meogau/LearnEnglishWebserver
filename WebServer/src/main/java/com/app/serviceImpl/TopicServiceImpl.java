@@ -38,4 +38,9 @@ public class TopicServiceImpl implements TopicService {
 		return topicDAO.findTopicById(topicId);
 	}
 
+	@Override
+	public Topic updateTopic(Topic topic) {
+		return topicDAO.updateTopic(topic);
+	}
+
 }

@@ -41,4 +41,9 @@ public class WordServiceImpl implements WordService {
 		return wordDAO.findWordById(wordId);
 	}
 
+	@Override
+	public Word updateWord(Word word) {
+		return wordDAO.updateWord(word);
+	}
+
 }

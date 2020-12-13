@@ -10,4 +10,5 @@ public interface WordService {
 	public List<Word> getListWord(int topicId);
 	public Word deleteWord(int wordId );
 	public Word findWordById(int wordId);
+	public Word updateWord(Word word);
 }

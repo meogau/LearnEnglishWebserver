@@ -11,6 +11,8 @@ import com.app.auth.model.SignupRequest;
 import com.app.auth.repository.RoleRepository;
 import com.app.auth.repository.UserRepository;
 import com.app.auth.service.UserDetailsImpl;
+import com.app.entity.UserInfo;
+import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +32,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    @Autowired
+    UserService userService;
+
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -113,7 +118,7 @@ public class AuthController {
 
         user.setRoles(roles);
         userRepository.save(user);
-
+        userService.addUserInfo(user.getId());
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }

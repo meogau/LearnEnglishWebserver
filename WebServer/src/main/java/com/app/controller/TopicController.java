@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import com.app.entity.Topic;
 import com.app.requestEntity.AddTopicRequest;
 import com.app.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,12 @@ public class TopicController {
 	@GetMapping("/find-topic-by-id/{topicId}")
 	public ResponseEntity<?> findTopicById(@PathVariable int topicId  ) {
 			return ResponseEntity.ok(topicService.findTopicById(topicId));
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@GetMapping("/update-topic")
+	public ResponseEntity<?> findTopicById(@RequestBody Topic topic  ) {
+		return ResponseEntity.ok(topicService.updateTopic(topic));
 	}
 
 }

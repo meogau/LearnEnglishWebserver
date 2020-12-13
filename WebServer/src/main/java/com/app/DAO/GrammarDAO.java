@@ -14,6 +14,8 @@ import java.util.List;
 public class GrammarDAO {
 	@Autowired
 	private EntityManager entityManager;
+
+
 	
 	public Grammar addGrammar(int levelId, String name, String theories, String example) {
 		Grammar grammar = new Grammar(levelId, name, theories, example);
@@ -35,6 +37,11 @@ public class GrammarDAO {
 	public Grammar deleteGrammar(int grammarId){
 		Grammar grammar = findGrammarById(grammarId);
 		if(!grammar.equals(null)) entityManager.remove(grammar);
+		return grammar;
+	}
+
+	public Grammar updateGrammar(Grammar grammar){
+		entityManager.merge(grammar);
 		return grammar;
 	}
 
