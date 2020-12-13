@@ -38,4 +38,15 @@ public class UserInfoDAO {
 		return entityManager.createQuery(hql,UserInfo.class).setMaxResults(5).getResultList();
 	}
 
+
+	 public UserInfo updateUserInfo(int userId, String name, String gender , Date birthday){
+		UserInfo userInfo = getUserInfo(userId);
+		userInfo.setName(name);
+		userInfo.setGender(gender);
+		userInfo.setBirthday(birthday);
+		entityManager.merge(userInfo);
+		return  userInfo;
+
+	 }
+
 }

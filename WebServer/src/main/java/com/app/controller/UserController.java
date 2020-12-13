@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import com.app.requestEntity.AddUserInfoRequest;
+import com.app.requestEntity.UpdateUserInfoRequest;
 import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,10 @@ public class UserController {
 
         return ResponseEntity.ok(userService.getRank5());
     }
-
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @RequestMapping("/update-user-info")
+    public ResponseEntity<?> updateUserInfo(@RequestBody UpdateUserInfoRequest updateRequest){
+        return ResponseEntity.ok(userService.updateUserInfo(updateRequest.getUserId(),updateRequest.getName(),updateRequest.getGender(),updateRequest.getBirthday()));
+    }
 
 }

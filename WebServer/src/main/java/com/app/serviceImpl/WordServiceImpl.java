@@ -3,12 +3,14 @@ package com.app.serviceImpl;
 import com.app.DAO.WordDAO;
 import com.app.DAO.WordLearntDAO;
 import com.app.entity.Word;
+import com.app.entity.WordLearnt;
 import com.app.requestEntity.AddWordRequest;
 import com.app.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,6 +46,17 @@ public class WordServiceImpl implements WordService {
 	@Override
 	public Word updateWord(Word word) {
 		return wordDAO.updateWord(word);
+	}
+
+	@Override
+	public List<Word> getListWordLearnt(int userId) {
+		List<Word> listWord = new ArrayList<>();
+		List<WordLearnt> wordLearntList = wordLearntDAO.getListWordLearnt(userId);
+		for(WordLearnt wordLearnt : wordLearntList){
+			listWord.add(wordDAO.findWordById(userId));
+		}
+
+		return listWord;
 	}
 
 }

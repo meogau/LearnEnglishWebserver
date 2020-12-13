@@ -35,4 +35,9 @@ public class UserServiceImpl  implements UserService {
     public List<UserInfo> getRank5() {
         return userInfoDAO.getRank5();
     }
+
+    @Override
+    public UserInfo updateUserInfo(int userId, String name, String gender, Date birthday) {
+        return userInfoDAO.updateUserInfo(userId,name,gender,birthday);
+    }
 }

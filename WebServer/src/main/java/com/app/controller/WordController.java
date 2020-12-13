@@ -45,4 +45,10 @@ public class WordController {
 	public ResponseEntity<?> updateWord(@RequestBody Word word) {
 		return ResponseEntity.ok(wordService.updateWord(word));
 	}
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+	@GetMapping("/get-list-word-learnt/{userId}")
+	public ResponseEntity<?> getListWordLearnt(@PathVariable int userId) {
+		return ResponseEntity.ok(wordService.getListWordLearnt(userId));
+	}
+
 }
