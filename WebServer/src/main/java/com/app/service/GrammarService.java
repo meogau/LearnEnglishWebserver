@@ -9,4 +9,5 @@ public interface GrammarService {
  public boolean addGrammar(AddGrammarRequest addGrammarRequest);
  public List<Grammar> getListGrammarInLevel(int levelId);
  public Grammar deleteGrammar(int grammarId);
+ public Grammar findGrammarById(int grammarId);
 }

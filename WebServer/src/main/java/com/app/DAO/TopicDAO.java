@@ -28,19 +28,19 @@ public class TopicDAO {
 		return entityManager.createQuery(hql,Topic.class).getResultList();
 	}
 
-	private Topic findTopicById(int topicId){
+	public Topic findTopicById(int topicId){
 		String hql ="FROM Topic t WHERE t.topicId = "+ topicId;
 		 List<Topic> result = entityManager.createQuery(hql,Topic.class).getResultList();
 		 if(result.size()==0) return null;
 		 else return result.get(0);
 	}
 
-	public boolean deleteTopic(int topicId){
+	public Topic deleteTopic(int topicId){
 		Topic topic = findTopicById(topicId);
-		if(topic.equals(null)) return false;
+		if(topic.equals(null)) return null;
 		else{
 			entityManager.remove(topic);
-			return true;
+			return topic;
 		}
 
 	}

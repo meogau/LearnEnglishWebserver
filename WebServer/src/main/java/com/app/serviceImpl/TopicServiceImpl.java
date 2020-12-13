@@ -29,8 +29,13 @@ public class TopicServiceImpl implements TopicService {
 	}
 
 	@Override
-	public boolean deleteTopic(int topicId) {
+	public Topic deleteTopic(int topicId) {
 		return topicDAO.deleteTopic(topicId);
+	}
+
+	@Override
+	public Topic findTopicById(int topicId) {
+		return topicDAO.findTopicById(topicId);
 	}
 
 }

@@ -34,4 +34,9 @@ public class WordController {
 	public ResponseEntity<?> deleteWord(@PathVariable int wordId) {
 		return ResponseEntity.ok(wordService.deleteWord(wordId));
 	}
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@GetMapping("/find-word-by-id/{wordId}")
+	public ResponseEntity<?> findWordById(@PathVariable int wordId) {
+		return ResponseEntity.ok(wordService.findWordById(wordId));
+	}
 }

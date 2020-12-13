@@ -28,4 +28,14 @@ private LevelDAO levelDAO;
 		
 	}
 
+	@Override
+	public Level findLevelById(int levelId) {
+		return levelDAO.findLevelById(levelId);
+	}
+
+	@Override
+	public Level deleteLevel(int levelId) {
+		return levelDAO.deleteLevel(levelId);
+	}
+
 }

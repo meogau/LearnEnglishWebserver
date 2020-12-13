@@ -34,4 +34,9 @@ public class GrammarServiceImpl implements GrammarService {
 		return grammarDAO.deleteGrammar(grammarId);
 	}
 
+	@Override
+	public Grammar findGrammarById(int grammarId) {
+		return grammarDAO.findGrammarById(grammarId);
+	}
+
 }

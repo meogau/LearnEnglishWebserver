@@ -8,4 +8,6 @@ import java.util.List;
 public interface LevelService {
  public boolean addLevel(AddLevelRequest addLevelRequest);
  public List<Level> getListLevel();
+ public Level findLevelById(int levelId);
+ public Level deleteLevel(int levelId);
 }

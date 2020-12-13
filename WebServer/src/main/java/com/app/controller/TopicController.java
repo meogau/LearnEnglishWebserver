@@ -29,10 +29,12 @@ public class TopicController {
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/delete-topic/{topicId}")
 	public ResponseEntity<?> deleteTopic(@PathVariable int topicId  ) {
-		if(topicService.deleteTopic(topicId))
-			return ResponseEntity.ok(HttpStatus.OK);
-		else
-			return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+			return ResponseEntity.ok(topicService.deleteTopic(topicId));
+	}
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@GetMapping("/find-topic-by-id/{topicId}")
+	public ResponseEntity<?> findTopicById(@PathVariable int topicId  ) {
+			return ResponseEntity.ok(topicService.findTopicById(topicId));
 	}
 
 }

@@ -32,7 +32,12 @@ public class GrammarController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/delete-grammar/{grammarId}")
     public ResponseEntity<?> deleteGrammar(@PathVariable int grammarId){
-
         return ResponseEntity.ok(grammarService.deleteGrammar(grammarId));
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/find-grammar-by-id/{grammarId}")
+    public ResponseEntity<?> findGrammarById(@PathVariable int grammarId){
+        return ResponseEntity.ok(grammarService.findGrammarById(grammarId));
     }
 }

@@ -36,4 +36,9 @@ public class WordServiceImpl implements WordService {
 		return wordDAO.deleteWord(wordId);
 	}
 
+	@Override
+	public Word findWordById(int wordId) {
+		return wordDAO.findWordById(wordId);
+	}
+
 }

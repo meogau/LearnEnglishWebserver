@@ -20,9 +20,22 @@ public class LevelDAO {
 		return true;
 		
 	}
-	
 	public List<Level> getListLevel(){
 		String hql = "SELECT level FROM Level level";
 		return entityManager.createQuery(hql, Level.class).getResultList();
 	}
+	public Level findLevelById(int levelId){
+		String hql = "SELECT level FROM Level level WHERE level.levelId = "+ levelId;
+		List<Level> listResult= entityManager.createQuery(hql, Level.class).getResultList();
+		if(listResult.size()==0) return null;
+		else return listResult.get(0);
+	}
+	public Level deleteLevel(int levelId){
+		Level level = findLevelById(levelId);
+		if(level.equals(null)) return null;
+		entityManager.remove(level);
+		return level;
+
+	}
+
 }
