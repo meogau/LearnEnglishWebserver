@@ -17,7 +17,7 @@ public class GrammarServiceImpl implements GrammarService {
 	private GrammarDAO grammarDAO;
 
 	@Override
-	public boolean addGrammar(AddGrammarRequest addGrammarRequest) {
+	public Grammar addGrammar(AddGrammarRequest addGrammarRequest) {
 
 		return grammarDAO.addGrammar(addGrammarRequest.getLevelId(), addGrammarRequest.getName(),
 				addGrammarRequest.getTheories(), addGrammarRequest.getExample());

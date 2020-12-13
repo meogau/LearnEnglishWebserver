@@ -18,7 +18,7 @@ private LevelDAO levelDAO;
 	
 	
 	@Override
-	public boolean addLevel(AddLevelRequest addLevelRequest) {
+	public Level addLevel(AddLevelRequest addLevelRequest) {
 		return levelDAO.addLevel(addLevelRequest.getType(), addLevelRequest.getNumber(), addLevelRequest.getDescription());
 	}
 

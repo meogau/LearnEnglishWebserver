@@ -15,12 +15,12 @@ public class TopicDAO {
 	private EntityManager entityManager;
 	
 	
-	public boolean addTopic(int levelId, String name) {
+	public Topic addTopic(int levelId, String name) {
 		
 		Topic topic = new Topic(levelId, name);
 		entityManager.persist(topic);
-		
-		return true;
+		entityManager.flush();
+		return topic;
 	}
 	
 	public List<Topic> getListTopic(int levelId){

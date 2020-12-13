@@ -18,7 +18,7 @@ public class TopicServiceImpl implements TopicService {
 	private TopicDAO topicDAO;
 	
 	@Override
-	public boolean addTopic(AddTopicRequest addTopicRequest) {
+	public Topic addTopic(AddTopicRequest addTopicRequest) {
 		return topicDAO.addTopic(addTopicRequest.getLevelId(), addTopicRequest.getName());
 	}
 

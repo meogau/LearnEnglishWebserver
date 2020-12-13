@@ -20,8 +20,8 @@ public class GrammarController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/add-grammar")
   public ResponseEntity<?> addGrammar(@RequestBody AddGrammarRequest addGrammarRequest){
-	  grammarService.addGrammar(addGrammarRequest);
-	  return ResponseEntity.ok(HttpStatus.OK);
+
+	  return ResponseEntity.ok( grammarService.addGrammar(addGrammarRequest));
   }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @GetMapping("/get-list-grammar/{levelId}")

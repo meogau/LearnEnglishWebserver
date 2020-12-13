@@ -18,8 +18,7 @@ public class WordController {
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/add-word")
 	public ResponseEntity<?> addWord(@RequestBody AddWordRequest addWordRequest) {
-		wordService.addWord(addWordRequest);
-		return ResponseEntity.ok(HttpStatus.OK);
+		return ResponseEntity.ok(wordService.addWord(addWordRequest));
 	}
 
 

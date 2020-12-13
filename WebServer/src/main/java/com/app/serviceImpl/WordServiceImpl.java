@@ -21,7 +21,7 @@ public class WordServiceImpl implements WordService {
 	private WordLearntDAO wordLearntDAO;
 	
 	@Override
-	public boolean addWord(AddWordRequest addWordRequest) {
+	public Word addWord(AddWordRequest addWordRequest) {
 		return wordDAO.addWord( addWordRequest.getTopicId(),  addWordRequest.getWord(),  addWordRequest.getImage(),  addWordRequest.getDescription(),
 				addWordRequest.getTranslation(),  addWordRequest.getAudio());
 	}

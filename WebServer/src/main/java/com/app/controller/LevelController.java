@@ -22,8 +22,7 @@ public class LevelController {
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/add-level")
 	public ResponseEntity<?> addLevel(@RequestBody AddLevelRequest addLevelRequest) {
-		levelService.addLevel(addLevelRequest);
-		return ResponseEntity.ok(HttpStatus.OK);
+		return ResponseEntity.ok(levelService.addLevel(addLevelRequest));
 
 	}
 

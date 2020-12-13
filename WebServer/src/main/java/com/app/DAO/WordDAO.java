@@ -14,12 +14,13 @@ public class WordDAO {
 	@Autowired
 	private EntityManager entityManager;
 
-	public boolean addWord(int topicId, String word, String image, String description, String translation,
+	public Word addWord(int topicId, String word, String image, String description, String translation,
 			String audio) {
 
 		Word w = new Word(topicId, word, image, description, translation, audio);
 		entityManager.persist(w);
-		return true;
+		entityManager.flush();
+		return w;
 	}
 
 	public List<Word> getListWord(int topicId) {

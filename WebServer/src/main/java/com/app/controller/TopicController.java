@@ -17,8 +17,7 @@ public class TopicController {
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/add-topic")
 	public ResponseEntity<?> addTopic(@RequestBody AddTopicRequest addTopicRequest) {
-		topicService.addTopic(addTopicRequest);
-		return ResponseEntity.ok(HttpStatus.OK);
+		return ResponseEntity.ok(topicService.addTopic(addTopicRequest));
 	}
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
 	@GetMapping("/get-list-topic/{levelId}")

@@ -6,7 +6,7 @@ import com.app.requestEntity.AddTopicRequest;
 import java.util.List;
 
 public interface TopicService {
-	 public boolean addTopic(AddTopicRequest addTopicRequest);
+	 public Topic addTopic(AddTopicRequest addTopicRequest);
 	 public List<Topic> getListTopic(int levelId);
 	public Topic deleteTopic(int topicId);
 	public Topic findTopicById(int topicId);

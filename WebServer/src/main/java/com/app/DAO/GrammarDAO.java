@@ -15,10 +15,11 @@ public class GrammarDAO {
 	@Autowired
 	private EntityManager entityManager;
 	
-	public boolean addGrammar(int levelId, String name, String theories, String example) {
+	public Grammar addGrammar(int levelId, String name, String theories, String example) {
 		Grammar grammar = new Grammar(levelId, name, theories, example);
 		entityManager.persist(grammar);
-		return true;
+		entityManager.flush();
+		return grammar;
 	}
 	public List<Grammar> getListGrammarInLevel(int levelId){
 		String hql ="FROM Grammar g WHERE g.levelId = "+ levelId;

@@ -14,10 +14,11 @@ public class LevelDAO {
 	@Autowired
 	private EntityManager entityManager;
 	
-	public boolean addLevel(String type, int number,String description) {
+	public Level addLevel(String type, int number,String description) {
 		Level level = new Level(type, number, description);
 		entityManager.persist(level);
-		return true;
+		entityManager.flush();
+		return level;
 		
 	}
 	public List<Level> getListLevel(){
