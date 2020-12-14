@@ -18,4 +18,7 @@ public interface QuestionService {
 	public boolean checkAnswerWordQuestion(int questionId,String answer);
 	public boolean checkAnswerGrammarQuestion(int questionId, String answer);
 	public int markGrammarQuestion( List<Answer> listAnswer);
+	public boolean checkPassTopic(List<Answer> answerList,int topicId);
+	public List<GrammarQuestion> getListGrammarQuestionByAdmin(int grammarId);
+	public List<WordQuestion> getListWordQuestionByAdmin(int wordId);
 }

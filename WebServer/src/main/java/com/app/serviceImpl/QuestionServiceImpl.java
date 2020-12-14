@@ -1,9 +1,6 @@
 package com.app.serviceImpl;
 
-import com.app.DAO.GrammarLeanrtDAO;
-import com.app.DAO.GrammarQuestionDAO;
-import com.app.DAO.UserInfoDAO;
-import com.app.DAO.WordQuestionDAO;
+import com.app.DAO.*;
 import com.app.DTO.QuestionDTO;
 import com.app.entity.GrammarQuestion;
 import com.app.entity.Word;
@@ -29,6 +26,8 @@ public class QuestionServiceImpl implements QuestionService {
 	private GrammarLeanrtDAO grammarLeanrtDAO;
 	@Autowired
 	private UserInfoDAO userInfoDAO;
+	@Autowired
+	WordDAO wordDAO;
 
 	@Override
 	public boolean addGrammarQuestion(AddQuestionRequest addQuestionRequest) {
@@ -89,6 +88,23 @@ public class QuestionServiceImpl implements QuestionService {
 			if(grammarQuestionDAO.checkAnswer(answer.getQuestionId(),answer.getAnswer())) point++;
 		}
 		return point;
+	}
+
+	@Override
+	public boolean checkPassTopic(List<Answer> answerList, int topicId) {
+		List<Word> wordList = wordDAO.getListWord(topicId);
+//		for()
+		return false;
+	}
+
+	@Override
+	public List<GrammarQuestion> getListGrammarQuestionByAdmin(int grammarId) {
+		return grammarQuestionDAO.getListQuestion(grammarId);
+	}
+
+	@Override
+	public List<WordQuestion> getListWordQuestionByAdmin(int wordId) {
+		return wordQuestionDAO.getListQuestion(wordId);
 	}
 
 

@@ -1,10 +1,12 @@
 package com.app.serviceImpl;
 
+import com.app.DAO.TopicDAO;
 import com.app.DAO.WordDAO;
 import com.app.DAO.WordLearntDAO;
 import com.app.entity.Word;
 import com.app.entity.WordLearnt;
 import com.app.requestEntity.AddWordRequest;
+import com.app.requestEntity.Answer;
 import com.app.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ public class WordServiceImpl implements WordService {
 	private WordDAO wordDAO;
 	@Autowired
 	private WordLearntDAO wordLearntDAO;
+	@Autowired
+	private TopicDAO topicDAO;
 	
 	@Override
 	public Word addWord(AddWordRequest addWordRequest) {
@@ -58,5 +62,7 @@ public class WordServiceImpl implements WordService {
 
 		return listWord;
 	}
+
+
 
 }

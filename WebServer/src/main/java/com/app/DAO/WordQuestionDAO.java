@@ -2,6 +2,7 @@ package com.app.DAO;
 
 import com.app.entity.GrammarQuestion;
 import com.app.entity.WordQuestion;
+import com.app.requestEntity.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,5 +45,16 @@ public class WordQuestionDAO {
         if(wordQuestion.getCorrectAnswer().equals(answer)) return true;
         else return false;
     }
+    public boolean checkPassWord(List<Answer> answerList,int wordId){
+        List<WordQuestion> wordQuestionList = getListQuestion(wordId);
+        int point = 0;
+        for(Answer answer: answerList){
+            if(checkAnswer(answer.getQuestionId(),answer.getAnswer())&&(findQuestionById(answer.getQuestionId()).getWordId()==wordId)) point++;
+        }
+        if(point>=(0.75*(wordQuestionList.size()))) return true;
+        else return false;
+    }
+
+
 
 }

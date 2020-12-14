@@ -32,7 +32,7 @@ public class QuestionController {
 	  return ResponseEntity.ok(HttpStatus.OK);
   }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-  @GetMapping("/get-list-grammar-question/{grammarId}")
+  @GetMapping("/get-list-grammar-question-by-user/{grammarId}")
   public ResponseEntity<?> getListGrammarQuestion(@PathVariable int grammarId){
 	 
 	  return ResponseEntity.ok(questionService.getListGrammarQuestion(grammarId));
@@ -44,7 +44,7 @@ public class QuestionController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-    @GetMapping("/get-list-word-question/{wordId}")
+    @GetMapping("/get-list-word-question-by-user/{wordId}")
     public ResponseEntity<?> getListWordQuestion(@PathVariable int wordId){
 
         return ResponseEntity.ok(questionService.getListWordQuestion(wordId));
@@ -75,5 +75,18 @@ public class QuestionController {
             messageAnswerResponse.setPlusMark(25);
         }
       return ResponseEntity.ok(messageAnswerResponse);
+    }
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/get-list-word-question/{wordId}")
+    public ResponseEntity<?> getListWordQuestionByAd(@PathVariable int wordId){
+
+        return ResponseEntity.ok(questionService.getListWordQuestionByAdmin(wordId));
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/get-list-grammar-question/{grammarId}")
+    public ResponseEntity<?> getListGrammarQuestionByAdmin(@PathVariable int grammarId){
+
+        return ResponseEntity.ok(questionService.getListGrammarQuestionByAdmin(grammarId));
     }
 }
