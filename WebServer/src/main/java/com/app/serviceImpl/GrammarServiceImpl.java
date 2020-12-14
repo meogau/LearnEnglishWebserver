@@ -1,6 +1,7 @@
 package com.app.serviceImpl;
 
 import com.app.DAO.GrammarDAO;
+import com.app.DAO.GrammarLeanrtDAO;
 import com.app.entity.Grammar;
 import com.app.requestEntity.AddGrammarRequest;
 import com.app.service.GrammarService;
@@ -15,6 +16,8 @@ import java.util.List;
 public class GrammarServiceImpl implements GrammarService {
 	@Autowired
 	private GrammarDAO grammarDAO;
+	@Autowired
+	GrammarLeanrtDAO grammarLeanrtDAO;
 
 	@Override
 	public Grammar addGrammar(AddGrammarRequest addGrammarRequest) {
@@ -42,6 +45,11 @@ public class GrammarServiceImpl implements GrammarService {
 	@Override
 	public Grammar updateGrammar(Grammar grammar) {
 		return grammarDAO.updateGrammar(grammar);
+	}
+
+	@Override
+	public void addGrammarLenarnt(int useId, int grammarId) {
+		grammarLeanrtDAO.addGrammarLearnt(useId,grammarId);
 	}
 
 }

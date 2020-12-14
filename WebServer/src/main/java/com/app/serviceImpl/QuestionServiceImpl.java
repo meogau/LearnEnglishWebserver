@@ -1,12 +1,15 @@
 package com.app.serviceImpl;
 
+import com.app.DAO.GrammarLeanrtDAO;
 import com.app.DAO.GrammarQuestionDAO;
+import com.app.DAO.UserInfoDAO;
 import com.app.DAO.WordQuestionDAO;
 import com.app.DTO.QuestionDTO;
 import com.app.entity.GrammarQuestion;
 import com.app.entity.Word;
 import com.app.entity.WordQuestion;
 import com.app.requestEntity.AddQuestionRequest;
+import com.app.requestEntity.Answer;
 import com.app.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,10 @@ public class QuestionServiceImpl implements QuestionService {
 	private GrammarQuestionDAO grammarQuestionDAO;
 	@Autowired
 	private WordQuestionDAO wordQuestionDAO;
+	@Autowired
+	private GrammarLeanrtDAO grammarLeanrtDAO;
+	@Autowired
+	private UserInfoDAO userInfoDAO;
 
 	@Override
 	public boolean addGrammarQuestion(AddQuestionRequest addQuestionRequest) {
@@ -73,6 +80,15 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public boolean checkAnswerGrammarQuestion(int questionId, String answer) {
 		return grammarQuestionDAO.checkAnswer(questionId,answer);
+	}
+
+	@Override
+	public int markGrammarQuestion( List<Answer> listAnswer) {
+		int point =0;
+		for(Answer answer :listAnswer){
+			if(grammarQuestionDAO.checkAnswer(answer.getQuestionId(),answer.getAnswer())) point++;
+		}
+		return point;
 	}
 
 

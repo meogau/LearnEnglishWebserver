@@ -4,6 +4,7 @@ import com.app.DTO.QuestionDTO;
 import com.app.entity.GrammarQuestion;
 import com.app.entity.WordQuestion;
 import com.app.requestEntity.AddQuestionRequest;
+import com.app.requestEntity.Answer;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface QuestionService {
 	public WordQuestion deleteWordQuestion (int questionId);
 	public boolean checkAnswerWordQuestion(int questionId,String answer);
 	public boolean checkAnswerGrammarQuestion(int questionId, String answer);
+	public int markGrammarQuestion( List<Answer> listAnswer);
 }

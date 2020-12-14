@@ -1,18 +1,29 @@
 package com.app.controller;
 
 import com.app.requestEntity.AddQuestionRequest;
+import com.app.requestEntity.Answer;
+import com.app.requestEntity.AnswerGrammarRequest;
+
+import com.app.responseEntity.MessageAnswerResponse;
+import com.app.service.GrammarService;
 import com.app.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/content")
 public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
+
+	@Autowired
+    private GrammarService grammarService;
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @GetMapping("/add-grammar-question")
@@ -47,5 +58,22 @@ public class QuestionController {
     @GetMapping("/check-answer-grammar-question")
     public ResponseEntity<Boolean> checkAnswerGrammar(@RequestParam int questionId, @RequestParam String answer){
         return ResponseEntity.ok(questionService.checkAnswerGrammarQuestion(questionId,answer));
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @RequestMapping(value = "/mark-answer-grammar-question",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> markGrammarQuestion(@RequestBody AnswerGrammarRequest answerRequest){
+       List<Answer> answerList = answerRequest.getListAnswer();
+       int userId = answerRequest.getUserId();
+       int grammarId = answerRequest.getGrammarId();
+        MessageAnswerResponse messageAnswerResponse = new MessageAnswerResponse();
+        int point = questionService.markGrammarQuestion(answerList);
+        messageAnswerResponse.setPoint(point);
+        if(point>=(0.7*(answerList.size()))) {
+            grammarService.addGrammarLenarnt(userId,grammarId);
+            messageAnswerResponse.setPassStatus(true);
+            messageAnswerResponse.setPlusMark(25);
+        }
+      return ResponseEntity.ok(messageAnswerResponse);
     }
 }

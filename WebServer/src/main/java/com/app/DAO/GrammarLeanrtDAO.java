@@ -14,7 +14,7 @@ public class GrammarLeanrtDAO {
 	@Autowired
 	private EntityManager entityManager;
 	
-	public boolean addGrammarLearnt(int grammarId,int userId) {
+	public boolean addGrammarLearnt(int userId,int grammarId) {
 		GrammarLearnt grammarLearnt = new GrammarLearnt(userId, grammarId) ;
 		entityManager.persist(grammarLearnt);
 		return true;
@@ -24,6 +24,7 @@ public class GrammarLeanrtDAO {
 		String hql ="FROM GrammarLearnt g WHERE g.userId = "+ userId;
 		return entityManager.createQuery(hql,GrammarLearnt.class).getResultList();
 	}
+
 	
 	
 }
