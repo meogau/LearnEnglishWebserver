@@ -24,6 +24,13 @@ public class GrammarLeanrtDAO {
 		String hql ="FROM GrammarLearnt g WHERE g.userId = "+ userId;
 		return entityManager.createQuery(hql,GrammarLearnt.class).getResultList();
 	}
+	public boolean checkGrammarLearnt(int userId, int grammarId){
+		List<GrammarLearnt> grammarLearntList = getListGrammarLearnt(userId);
+		for(GrammarLearnt grammarLearnt : grammarLearntList){
+			if(grammarLearnt.getGrammarId()==grammarId) return true;
+		}
+		return false;
+	}
 
 	
 	

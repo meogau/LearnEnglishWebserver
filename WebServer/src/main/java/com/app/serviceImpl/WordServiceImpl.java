@@ -63,6 +63,21 @@ public class WordServiceImpl implements WordService {
 		return listWord;
 	}
 
+	@Override
+	public boolean checkWordLearnt(int userId, int wordId) {
+		return wordLearntDAO.checkWordLearnt(userId,wordId);
+	}
+
+	@Override
+	public float getStatus(int topicId, int userId) {
+		List<Word> wordList = getListWord(topicId);
+		int point =0;
+		for(Word word : wordList){
+			if(checkWordLearnt(userId,word.getWordId())) point++;
+		}
+		float status = (float) point /(float) (wordList.size());
+		return status;
+	}
 
 
 }

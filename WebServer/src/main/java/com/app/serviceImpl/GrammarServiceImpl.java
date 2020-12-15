@@ -52,4 +52,9 @@ public class GrammarServiceImpl implements GrammarService {
 		grammarLeanrtDAO.addGrammarLearnt(useId,grammarId);
 	}
 
+	@Override
+	public boolean checkGrammarLearnt(int userId, int grammarId) {
+		return grammarLeanrtDAO.checkGrammarLearnt(userId, grammarId);
+	}
+
 }

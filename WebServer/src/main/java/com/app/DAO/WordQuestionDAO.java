@@ -51,7 +51,9 @@ public class WordQuestionDAO {
         for(Answer answer: answerList){
             if(checkAnswer(answer.getQuestionId(),answer.getAnswer())&&(findQuestionById(answer.getQuestionId()).getWordId()==wordId)) point++;
         }
-        if(point>=(0.75*(wordQuestionList.size()))) return true;
+        if(point>=(0.75*(wordQuestionList.size()))) {
+            return true;
+        }
         else return false;
     }
 

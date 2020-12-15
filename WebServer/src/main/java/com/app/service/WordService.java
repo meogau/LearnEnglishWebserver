@@ -14,5 +14,6 @@ public interface WordService {
 	public Word findWordById(int wordId);
 	public Word updateWord(Word word);
 	public List<Word> getListWordLearnt(int userId);
-
+    public boolean checkWordLearnt(int userId, int wordId);
+	public float getStatus(int topicId,int userId);
 }

@@ -11,4 +11,5 @@ public interface TopicService {
 	public Topic deleteTopic(int topicId);
 	public Topic findTopicById(int topicId);
 	public Topic updateTopic(Topic topic);
+
 }

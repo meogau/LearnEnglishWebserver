@@ -42,6 +42,9 @@ public class LevelDAO {
 		entityManager.merge(level);
 		return level;
 	}
-
+	public List<Level> getListLevelByUser(int leverUnlock){
+		String hql = "SELECT level FROM Level level";
+		return entityManager.createQuery(hql, Level.class).setMaxResults(leverUnlock+1).getResultList();
+	}
 
 }

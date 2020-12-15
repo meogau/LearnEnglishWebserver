@@ -28,6 +28,8 @@ public class QuestionServiceImpl implements QuestionService {
 	private UserInfoDAO userInfoDAO;
 	@Autowired
 	WordDAO wordDAO;
+	@Autowired
+	WordLearntDAO wordLearntDAO;
 
 	@Override
 	public boolean addGrammarQuestion(AddQuestionRequest addQuestionRequest) {
@@ -91,9 +93,20 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public boolean checkPassTopic(List<Answer> answerList, int topicId) {
+	public boolean checkPassTopic(List<Answer> answerList,int userId, int topicId ) {
 		List<Word> wordList = wordDAO.getListWord(topicId);
-//		for()
+		int point =0;
+		for(Word word : wordList){
+			if(wordQuestionDAO.checkPassWord(answerList,word.getWordId())){
+				point++;
+				wordLearntDAO.addWordLearnt(word.getWordId(),userId);
+
+			}
+		}
+		if(point >= 0.75*(wordList.size())){
+			//luu la da pass topic
+			return true;
+		}
 		return false;
 	}
 

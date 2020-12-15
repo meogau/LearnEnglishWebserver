@@ -1,16 +1,15 @@
 package com.app.controller;
 
 import com.app.entity.Level;
+import com.app.entity.UserInfo;
 import com.app.requestEntity.AddLevelRequest;
 import com.app.service.LevelService;
+import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LevelController {
 	@Autowired
 	private LevelService levelService;
+	@Autowired
+	private UserService userService;
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/add-level")
@@ -26,12 +27,17 @@ public class LevelController {
 		return ResponseEntity.ok(levelService.addLevel(addLevelRequest));
 
 	}
-
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@RequestMapping(value = "get-list-level")
 	public ResponseEntity<?> getListLevel( ) {
 
 		return ResponseEntity.ok(levelService.getListLevel());
 
+	}
+	@RequestMapping(value = "get-list-level-by-user")
+	public ResponseEntity<?> getListLevelByUser(@RequestParam int userId) {
+		UserInfo userInfo= userService.getUserInfo(userId);
+		return ResponseEntity.ok(levelService.getListLevelByUser(userInfo.getUnlockLevel()));
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")

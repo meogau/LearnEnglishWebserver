@@ -12,4 +12,5 @@ public interface GrammarService {
  public Grammar findGrammarById(int grammarId);
  public Grammar updateGrammar(Grammar grammar);
  public void addGrammarLenarnt(int useId,int grammarId);
+ public boolean checkGrammarLearnt(int userId, int grammarId);
 }

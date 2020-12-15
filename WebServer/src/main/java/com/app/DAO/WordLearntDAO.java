@@ -25,4 +25,12 @@ public class WordLearntDAO {
 		return entityManager.createQuery(hql, WordLearnt.class).getResultList();
 	}
 
+	public boolean checkWordLearnt(int userId, int wordId){
+		List<WordLearnt> wordLearntList = getListWordLearnt(userId);
+		for(WordLearnt wordLearnt : wordLearntList){
+			if(wordLearnt.getWordId()==wordId) return true;
+		}
+		return false;
+	}
+
 }

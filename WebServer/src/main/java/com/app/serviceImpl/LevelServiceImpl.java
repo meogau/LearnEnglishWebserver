@@ -43,4 +43,9 @@ private LevelDAO levelDAO;
 		return levelDAO.updateLevel(level);
 	}
 
+	@Override
+	public List<Level> getListLevelByUser(int leverUnlock) {
+		return levelDAO.getListLevelByUser(leverUnlock);
+	}
+
 }

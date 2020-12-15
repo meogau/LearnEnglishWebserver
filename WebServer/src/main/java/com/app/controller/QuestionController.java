@@ -34,7 +34,6 @@ public class QuestionController {
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
   @GetMapping("/get-list-grammar-question-by-user/{grammarId}")
   public ResponseEntity<?> getListGrammarQuestion(@PathVariable int grammarId){
-	 
 	  return ResponseEntity.ok(questionService.getListGrammarQuestion(grammarId));
   }
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -76,6 +75,7 @@ public class QuestionController {
         }
       return ResponseEntity.ok(messageAnswerResponse);
     }
+
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/get-list-word-question/{wordId}")
     public ResponseEntity<?> getListWordQuestionByAd(@PathVariable int wordId){
@@ -86,7 +86,6 @@ public class QuestionController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/get-list-grammar-question/{grammarId}")
     public ResponseEntity<?> getListGrammarQuestionByAdmin(@PathVariable int grammarId){
-
         return ResponseEntity.ok(questionService.getListGrammarQuestionByAdmin(grammarId));
     }
 }

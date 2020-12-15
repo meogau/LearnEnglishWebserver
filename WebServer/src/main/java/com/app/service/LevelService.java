@@ -11,4 +11,5 @@ public interface LevelService {
  public Level findLevelById(int levelId);
  public Level deleteLevel(int levelId);
  public Level updateLevel(Level level);
+ public List<Level> getListLevelByUser(int leverUnlock);
 }
