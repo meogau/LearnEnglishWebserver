@@ -1,12 +1,12 @@
 package com.app.responseEntity;
 
 public class MessageAnswerResponse {
-    boolean passStatus;
+    float status;
     int point ;
     int plusMark;
 
-    public MessageAnswerResponse(boolean passStatus, int point, int plusMark) {
-        this.passStatus = passStatus;
+    public MessageAnswerResponse(int status, int point, int plusMark) {
+        this.status = status;
         this.point = point;
         this.plusMark = plusMark;
     }
@@ -14,12 +14,18 @@ public class MessageAnswerResponse {
     public MessageAnswerResponse() {
     }
 
-    public boolean isPassStatus() {
-        return passStatus;
+    public MessageAnswerResponse(float status, int point, int plusMark) {
+        this.status = status;
+        this.point = point;
+        this.plusMark = plusMark;
     }
 
-    public void setPassStatus(boolean passStatus) {
-        this.passStatus = passStatus;
+    public float getStatus() {
+        return status;
+    }
+
+    public void setStatus(float status) {
+        this.status = status;
     }
 
     public int getPoint() {

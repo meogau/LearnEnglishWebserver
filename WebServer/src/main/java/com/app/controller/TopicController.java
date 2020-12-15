@@ -41,7 +41,7 @@ public class TopicController {
 		List<TopicDTO> topicDTOList = new ArrayList<>();
         for(Topic topic : topicList){
         	TopicDTO topicDTO = new TopicDTO(topic);
-        	topicDTO.setStatus(wordService.getStatus(topic.getTopicId(),userId));
+        	topicDTO.setStatus(wordService.getTopicStatus(topic.getTopicId(),userId));
         	topicDTOList.add(topicDTO);
 		}
 

@@ -48,5 +48,11 @@ public class UserInfoDAO {
 		return  userInfo;
 
 	 }
+	 public void updatePlusPoint(int userId, int point){
+		UserInfo userInfo = getUserInfo(userId);
+		userInfo.setScore(userInfo.getScore()+point);
+		entityManager.merge(userInfo);
+		entityManager.flush();
+	 }
 
 }

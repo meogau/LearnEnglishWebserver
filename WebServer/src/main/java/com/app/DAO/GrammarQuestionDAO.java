@@ -38,6 +38,11 @@ public class GrammarQuestionDAO {
 		if(!question.equals(null))entityManager.remove(question);
 		return question;
 	}
+	public GrammarQuestion updateGrammarQuestion(GrammarQuestion grammarQuestion){
+		entityManager.merge(grammarQuestion);
+		entityManager.flush();
+		return grammarQuestion;
+	}
 	public boolean checkAnswer(int questionId, String answer){
 		GrammarQuestion grammarQuestion = findQuestionById(questionId);
 		if(grammarQuestion.equals(null)) return false;

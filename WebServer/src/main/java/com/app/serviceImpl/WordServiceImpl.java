@@ -69,7 +69,7 @@ public class WordServiceImpl implements WordService {
 	}
 
 	@Override
-	public float getStatus(int topicId, int userId) {
+	public float getTopicStatus(int topicId, int userId) {
 		List<Word> wordList = getListWord(topicId);
 		int point =0;
 		for(Word word : wordList){

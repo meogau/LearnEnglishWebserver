@@ -40,4 +40,9 @@ public class UserServiceImpl  implements UserService {
     public UserInfo updateUserInfo(int userId, String name, String gender, Date birthday) {
         return userInfoDAO.updateUserInfo(userId,name,gender,birthday);
     }
+
+    @Override
+    public void updatePoint(int userId, int point) {
+        userInfoDAO.updatePlusPoint(userId,point);
+    }
 }

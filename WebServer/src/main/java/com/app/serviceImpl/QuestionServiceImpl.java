@@ -93,24 +93,6 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public boolean checkPassTopic(List<Answer> answerList,int userId, int topicId ) {
-		List<Word> wordList = wordDAO.getListWord(topicId);
-		int point =0;
-		for(Word word : wordList){
-			if(wordQuestionDAO.checkPassWord(answerList,word.getWordId())){
-				point++;
-				wordLearntDAO.addWordLearnt(word.getWordId(),userId);
-
-			}
-		}
-		if(point >= 0.75*(wordList.size())){
-			//luu la da pass topic
-			return true;
-		}
-		return false;
-	}
-
-	@Override
 	public List<GrammarQuestion> getListGrammarQuestionByAdmin(int grammarId) {
 		return grammarQuestionDAO.getListQuestion(grammarId);
 	}
@@ -118,6 +100,41 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public List<WordQuestion> getListWordQuestionByAdmin(int wordId) {
 		return wordQuestionDAO.getListQuestion(wordId);
+	}
+
+	@Override
+	public int markTopicQuestion(List<Answer> listAnswer, int topicId, int userId) {
+		int point = 0;
+		List<Word> wordList = wordDAO.getListWord(topicId);
+		//cham diem cho tung word
+		for(Word word : wordList){
+			int pointPerWord = wordQuestionDAO.markWord(listAnswer,word.getWordId());
+			point += pointPerWord;
+			int numOfQuestionPerWord = wordQuestionDAO.getListQuestion(word.getWordId()).size();
+			if(pointPerWord>=(0.75)*numOfQuestionPerWord) wordLearntDAO.addWordLearnt(word.getWordId(),userId);
+		}
+
+		return point;
+	}
+
+	@Override
+	public WordQuestion findWordQuestionById(int id) {
+		return wordQuestionDAO.findQuestionById(id);
+	}
+
+	@Override
+	public WordQuestion updateWordQuestion(WordQuestion wordQuestion) {
+		return wordQuestionDAO.updateQuestion(wordQuestion);
+	}
+
+	@Override
+	public GrammarQuestion findGrammarQuestionById(int id) {
+		return grammarQuestionDAO.findQuestionById(id);
+	}
+
+	@Override
+	public GrammarQuestion updateGrammarQuestion(GrammarQuestion grammarQuestion) {
+		return grammarQuestionDAO.updateGrammarQuestion(grammarQuestion);
 	}
 
 

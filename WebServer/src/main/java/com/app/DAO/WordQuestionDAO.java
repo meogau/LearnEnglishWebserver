@@ -39,22 +39,24 @@ public class WordQuestionDAO {
         if(!question.equals(null))entityManager.remove(question);
         return question;
     }
+
+        public WordQuestion updateQuestion(WordQuestion wordQuestion){
+        entityManager.merge(wordQuestion);
+        entityManager.flush();
+        return wordQuestion;
+    }
     public boolean checkAnswer(int questionId,String answer){
         WordQuestion wordQuestion = findQuestionById(questionId);
         if(wordQuestion.equals(null)) return false;
         if(wordQuestion.getCorrectAnswer().equals(answer)) return true;
         else return false;
     }
-    public boolean checkPassWord(List<Answer> answerList,int wordId){
-        List<WordQuestion> wordQuestionList = getListQuestion(wordId);
+    public int markWord(List<Answer> answerList,int wordId){
         int point = 0;
         for(Answer answer: answerList){
             if(checkAnswer(answer.getQuestionId(),answer.getAnswer())&&(findQuestionById(answer.getQuestionId()).getWordId()==wordId)) point++;
         }
-        if(point>=(0.75*(wordQuestionList.size()))) {
-            return true;
-        }
-        else return false;
+         return point;
     }
 
 
