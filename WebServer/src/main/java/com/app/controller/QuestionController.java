@@ -2,11 +2,8 @@ package com.app.controller;
 
 import com.app.entity.GrammarQuestion;
 import com.app.entity.WordQuestion;
-import com.app.requestEntity.AddQuestionRequest;
-import com.app.requestEntity.Answer;
-import com.app.requestEntity.AnswerGrammarRequest;
+import com.app.requestEntity.*;
 
-import com.app.requestEntity.AnswerTopicRequest;
 import com.app.responseEntity.MessageAnswerResponse;
 import com.app.service.GrammarService;
 import com.app.service.QuestionService;
@@ -37,35 +34,45 @@ public class QuestionController {
     private UserService userService;
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-  @GetMapping("/add-grammar-question")
+  @RequestMapping("/add-grammar-question")
   public ResponseEntity<?> addGrammarQuestion(@RequestBody AddQuestionRequest addQuestionRequest){
 	  questionService.addGrammarQuestion(addQuestionRequest);
 	  return ResponseEntity.ok(HttpStatus.OK);
   }
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @RequestMapping("/add-word-question")
+    public ResponseEntity<?> addWordQuestion(@RequestBody AddWordQuestionRequest addWordQuestionRequest){
+        questionService.addWordQuestion(addWordQuestionRequest.getWordId(),addWordQuestionRequest.getType(), addWordQuestionRequest.getQuestion(),
+                addWordQuestionRequest.getAnswerA(), addWordQuestionRequest.getAnswerB(),addWordQuestionRequest.getAnswerC(), addWordQuestionRequest.getAnswerD(),addWordQuestionRequest.getCorrectAnswer()
+        );
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-  @GetMapping("/get-list-grammar-question-by-user/{grammarId}")
+  @RequestMapping("/get-list-grammar-question-by-user/{grammarId}")
   public ResponseEntity<?> getListGrammarQuestion(@PathVariable int grammarId){
 	  return ResponseEntity.ok(questionService.getListGrammarQuestion(grammarId));
   }
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @PostMapping("/delete-grammar-question/{questionId}")
+    @RequestMapping("/delete-grammar-question/{questionId}")
     public ResponseEntity<?> deleteGrammarQuestion(@PathVariable int questionId ){
         questionService.deleteGrammarQuestion(questionId);
         return ResponseEntity.ok(HttpStatus.OK);
     }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-    @GetMapping("/get-list-word-question-by-user/{wordId}")
+    @RequestMapping("/get-list-word-question-by-user/{wordId}")
     public ResponseEntity<?> getListWordQuestion(@PathVariable int wordId){
 
         return ResponseEntity.ok(questionService.getListWordQuestion(wordId));
     }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-    @GetMapping("/check-answer-word-question")
+    @RequestMapping("/check-answer-word-question")
     public ResponseEntity<Boolean> checkAnswer(@RequestParam int questionId, @RequestParam String answer){
         return ResponseEntity.ok(questionService.checkAnswerWordQuestion(questionId,answer));
     }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-    @GetMapping("/check-answer-grammar-question")
+    @RequestMapping("/check-answer-grammar-question")
     public ResponseEntity<Boolean> checkAnswerGrammar(@RequestParam int questionId, @RequestParam String answer){
         return ResponseEntity.ok(questionService.checkAnswerGrammarQuestion(questionId,answer));
     }
@@ -89,14 +96,14 @@ public class QuestionController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/get-list-word-question/{wordId}")
+    @RequestMapping("/get-list-word-question/{wordId}")
     public ResponseEntity<?> getListWordQuestionByAd(@PathVariable int wordId){
 
         return ResponseEntity.ok(questionService.getListWordQuestionByAdmin(wordId));
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/get-list-grammar-question/{grammarId}")
+    @RequestMapping("/get-list-grammar-question/{grammarId}")
     public ResponseEntity<?> getListGrammarQuestionByAdmin(@PathVariable int grammarId){
         return ResponseEntity.ok(questionService.getListGrammarQuestionByAdmin(grammarId));
     }

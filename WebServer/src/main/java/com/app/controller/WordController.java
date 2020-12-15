@@ -21,21 +21,21 @@ public class WordController {
 	private WordService wordService;
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/add-word")
+	@RequestMapping("/add-word")
 	public ResponseEntity<?> addWord(@RequestBody AddWordRequest addWordRequest) {
 		return ResponseEntity.ok(wordService.addWord(addWordRequest));
 	}
 
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-	@GetMapping("/get-list-word/{topicId}")
+	@RequestMapping("/get-list-word/{topicId}")
 	public ResponseEntity<?> getListWord(@PathVariable int topicId) {
 
 		return ResponseEntity.ok(wordService.getListWord(topicId));
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-	@GetMapping("/get-list-word-by-user")
+	@RequestMapping("/get-list-word-by-user")
 	public ResponseEntity<?> getListWordByUser(@RequestParam int topicId,@RequestParam int userId) {
 		List<Word> wordList = wordService.getListWord(topicId);
 		List<WordDTO> wordDTOList = new ArrayList<>();
@@ -48,23 +48,23 @@ public class WordController {
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/delete-word/{wordId}")
+	@RequestMapping("/delete-word/{wordId}")
 	public ResponseEntity<?> deleteWord(@PathVariable int wordId) {
 		return ResponseEntity.ok(wordService.deleteWord(wordId));
 	}
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/find-word-by-id/{wordId}")
+	@RequestMapping("/find-word-by-id/{wordId}")
 	public ResponseEntity<?> findWordById(@PathVariable int wordId) {
 		return ResponseEntity.ok(wordService.findWordById(wordId));
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/update-word")
+	@RequestMapping("/update-word")
 	public ResponseEntity<?> updateWord(@RequestBody Word word) {
 		return ResponseEntity.ok(wordService.updateWord(word));
 	}
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-	@GetMapping("/get-list-word-learnt/{userId}")
+	@RequestMapping("/get-list-word-learnt/{userId}")
 	public ResponseEntity<?> getListWordLearnt(@PathVariable int userId) {
 		return ResponseEntity.ok(wordService.getListWordLearnt(userId));
 	}

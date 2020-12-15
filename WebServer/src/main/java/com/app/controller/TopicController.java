@@ -24,18 +24,18 @@ public class TopicController {
 
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/add-topic")
+	@RequestMapping("/add-topic")
 	public ResponseEntity<?> addTopic(@RequestBody AddTopicRequest addTopicRequest) {
 		return ResponseEntity.ok(topicService.addTopic(addTopicRequest));
 	}
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-	@GetMapping("/get-list-topic/{levelId}")
+	@RequestMapping("/get-list-topic/{levelId}")
 	public ResponseEntity<?> getListGrammar(@PathVariable int levelId) {
 		return ResponseEntity.ok(topicService.getListTopic(levelId));
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-	@GetMapping("/get-list-topic-by-user")
+	@RequestMapping("/get-list-topic-by-user")
 	public ResponseEntity<?> getListGrammarByUser(@RequestParam int userId,@RequestParam int levelId) {
 		List<Topic> topicList = topicService.getListTopic(levelId);
 		List<TopicDTO> topicDTOList = new ArrayList<>();
@@ -49,18 +49,18 @@ public class TopicController {
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/delete-topic/{topicId}")
+	@RequestMapping("/delete-topic/{topicId}")
 	public ResponseEntity<?> deleteTopic(@PathVariable int topicId  ) {
 			return ResponseEntity.ok(topicService.deleteTopic(topicId));
 	}
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/find-topic-by-id/{topicId}")
+	@RequestMapping("/find-topic-by-id/{topicId}")
 	public ResponseEntity<?> findTopicById(@PathVariable int topicId  ) {
 			return ResponseEntity.ok(topicService.findTopicById(topicId));
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/update-topic")
+	@RequestMapping("/update-topic")
 	public ResponseEntity<?> findTopicById(@RequestBody Topic topic  ) {
 		return ResponseEntity.ok(topicService.updateTopic(topic));
 	}

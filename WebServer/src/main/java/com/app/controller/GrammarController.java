@@ -22,35 +22,35 @@ public class GrammarController {
 	private GrammarService grammarService;
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/add-grammar")
+	@RequestMapping("/add-grammar")
   public ResponseEntity<?> addGrammar(@RequestBody AddGrammarRequest addGrammarRequest){
 	  return ResponseEntity.ok( grammarService.addGrammar(addGrammarRequest));
   }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-    @GetMapping("/get-list-grammar/{levelId}")
+    @RequestMapping("/get-list-grammar/{levelId}")
   public ResponseEntity<?> getListGrammar(@PathVariable int levelId){
 	  return ResponseEntity.ok(grammarService.getListGrammarInLevel(levelId));
   }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/delete-grammar/{grammarId}")
+    @RequestMapping("/delete-grammar/{grammarId}")
     public ResponseEntity<?> deleteGrammar(@PathVariable int grammarId){
         return ResponseEntity.ok(grammarService.deleteGrammar(grammarId));
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/find-grammar-by-id/{grammarId}")
+    @RequestMapping("/find-grammar-by-id/{grammarId}")
     public ResponseEntity<?> findGrammarById(@PathVariable int grammarId){
         return ResponseEntity.ok(grammarService.findGrammarById(grammarId));
     }
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/update-grammar")
+    @RequestMapping("/update-grammar")
     public ResponseEntity<?> updateGrammar(@RequestBody Grammar grammar){
         return ResponseEntity.ok(grammarService.updateGrammar(grammar));
     }
 
   @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-  @GetMapping("/get-list-grammar-by-user")
+  @RequestMapping("/get-list-grammar-by-user")
   public ResponseEntity<?> getListGrammar(@RequestParam int levelId,@RequestParam int userId){
     List<Grammar> grammarList = grammarService.getListGrammarInLevel(levelId);
     List<GrammarDTO> grammarDTOList = new ArrayList<>();

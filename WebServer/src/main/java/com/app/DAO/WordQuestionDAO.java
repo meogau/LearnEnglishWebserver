@@ -15,12 +15,13 @@ import java.util.List;
 public class WordQuestionDAO {
     @Autowired
     private EntityManager entityManager;
-    public boolean addQuestion(int wordId,int type, String question, String answerA, String answerB, String answerC, String answerD,
+    public WordQuestion addQuestion(int wordId,int type, String question, String answerA, String answerB, String answerC, String answerD,
                                String correctAnswer) {
 
         WordQuestion ques = new WordQuestion(wordId,type, question, answerA, answerB, answerC, answerD, correctAnswer);
         entityManager.persist(ques);
-        return true;
+        entityManager.flush();
+        return ques;
     }
 
     public List<WordQuestion> getListQuestion(int wordId){

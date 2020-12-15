@@ -13,7 +13,6 @@ public interface QuestionService {
 	 public boolean addGrammarQuestion(AddQuestionRequest addQuestionRequest);
 	 public List<QuestionDTO> getListGrammarQuestion(int grammarId);
 	public GrammarQuestion deleteGrammarQuestion (int questionId);
-	public boolean addWordQuestion(AddQuestionRequest addQuestionRequest);
 	public List<QuestionDTO> getListWordQuestion(int wordId);
 	public WordQuestion deleteWordQuestion (int questionId);
 	public boolean checkAnswerWordQuestion(int questionId,String answer);
@@ -26,4 +25,6 @@ public interface QuestionService {
 	public WordQuestion updateWordQuestion(WordQuestion wordQuestion);
 	public GrammarQuestion findGrammarQuestionById(int id);
 	public GrammarQuestion updateGrammarQuestion(GrammarQuestion grammarQuestion);
+	public WordQuestion addWordQuestion(int wordId,int type, String question, String answerA, String answerB, String answerC, String answerD,
+									String correctAnswer);
 }

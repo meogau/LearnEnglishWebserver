@@ -53,10 +53,7 @@ public class QuestionServiceImpl implements QuestionService {
 		return grammarQuestionDAO.deleteQuestion(questionId);
 	}
 
-	@Override
-	public boolean addWordQuestion(AddQuestionRequest addQuestionRequest) {
-		return false;
-	}
+
 
 	@Override
 	public List<QuestionDTO> getListWordQuestion(int wordId) {
@@ -135,6 +132,11 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public GrammarQuestion updateGrammarQuestion(GrammarQuestion grammarQuestion) {
 		return grammarQuestionDAO.updateGrammarQuestion(grammarQuestion);
+	}
+
+	@Override
+	public WordQuestion addWordQuestion(int wordId, int type, String question, String answerA, String answerB, String answerC, String answerD, String correctAnswer) {
+		return wordQuestionDAO.addQuestion(wordId,type, question, answerA ,answerB, answerC , answerD, correctAnswer);
 	}
 
 
