@@ -106,7 +106,7 @@ public class QuestionServiceImpl implements QuestionService {
 		//cham diem cho tung word
 		for(Word word : wordList){
 			int pointPerWord = wordQuestionDAO.markWord(listAnswer,word.getWordId());
-			point += pointPerWord;
+			point = point+ pointPerWord;
 			int numOfQuestionPerWord = wordQuestionDAO.getListQuestion(word.getWordId()).size();
 			if(pointPerWord>=(0.75)*numOfQuestionPerWord) wordLearntDAO.addWordLearnt(word.getWordId(),userId);
 		}

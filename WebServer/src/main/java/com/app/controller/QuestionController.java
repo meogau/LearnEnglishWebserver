@@ -115,7 +115,7 @@ public class QuestionController {
         int topicId = answerRequest.getTopicId();
         int point = questionService.markTopicQuestion(answerList,topicId,userId);
         float status = wordService.getTopicStatus(topicId, userId);
-        int plusMark = (int ) (status*30);
+        int plusMark = (int ) (point*0.25);
         userService.updatePoint(userId,plusMark);
         MessageAnswerResponse messageAnswerResponse = new MessageAnswerResponse(status,point,plusMark);
         return ResponseEntity.ok(messageAnswerResponse);
