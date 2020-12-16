@@ -2,9 +2,7 @@ package com.app.serviceImpl;
 
 import com.app.DAO.*;
 import com.app.DTO.QuestionDTO;
-import com.app.entity.GrammarQuestion;
-import com.app.entity.Word;
-import com.app.entity.WordQuestion;
+import com.app.entity.*;
 import com.app.requestEntity.AddQuestionRequest;
 import com.app.requestEntity.Answer;
 import com.app.service.QuestionService;
@@ -30,6 +28,11 @@ public class QuestionServiceImpl implements QuestionService {
 	WordDAO wordDAO;
 	@Autowired
 	WordLearntDAO wordLearntDAO;
+	@Autowired
+	LevelDAO levelDAO;
+	@Autowired
+	GrammarDAO grammarDAO;
+
 
 	@Override
 	public boolean addGrammarQuestion(AddQuestionRequest addQuestionRequest) {
@@ -150,6 +153,32 @@ public class QuestionServiceImpl implements QuestionService {
 			}
 		}
 		return wordQuestionList;
+	}
+
+	@Override
+	public List<GrammarQuestion> getListFirstTest() {
+		List<GrammarQuestion> grammarQuestionList = new ArrayList<>();
+		List<Level> levelList = levelDAO.getListLevel();
+
+		for(Level level : levelList){
+			List<Grammar> grammarList = grammarDAO.getListGrammarInLevel(level.getLevelId());
+			for(Grammar grammar : grammarList){
+				grammarQuestionList.add(grammarQuestionDAO.getRandomQuestion(grammar.getGrammarId()));
+			}
+		}
+
+		return grammarQuestionList;
+	}
+
+	@Override
+	public int markFirstTest(int userId, List<Answer> answerList) {
+		int point =0;
+		for(Answer answer : answerList){
+			
+		}
+
+
+		return 0;
 	}
 
 

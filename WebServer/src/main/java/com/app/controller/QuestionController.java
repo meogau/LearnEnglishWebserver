@@ -177,4 +177,16 @@ public class QuestionController {
     public ResponseEntity<?> updateWordQuestion(@RequestBody WordQuestion wordQuestion) {
         return ResponseEntity.ok(questionService.updateWordQuestion(wordQuestion));
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @RequestMapping("/get-question-for-first-test")
+public ResponseEntity<?> getQuestionForFirstTest(){
+        List<GrammarQuestion> grammarQuestionList = questionService.getListFirstTest();
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        for(GrammarQuestion grammarQuestion : grammarQuestionList){
+            QuestionDTO questionDTO = new QuestionDTO(grammarQuestion);
+            questionDTOList.add(questionDTO);
+        }
+        return ResponseEntity.ok(questionDTOList);
+    }
 }

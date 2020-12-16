@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -49,4 +50,13 @@ public class GrammarQuestionDAO {
 		if(grammarQuestion.getCorrectAnswer().equals(answer)) return true;
 		else return false;
 	}
+
+	public GrammarQuestion getRandomQuestion(int grammarId){
+		List<GrammarQuestion> grammarQuestionList = getListQuestion(grammarId);
+		Collections.shuffle(grammarQuestionList);
+		return grammarQuestionList.get(0);
+	}
+
+
+
 }

@@ -1,5 +1,6 @@
 package com.app.service;
 
+import com.app.entity.GrammarQuestion;
 import com.app.entity.Word;
 import com.app.entity.WordLearnt;
 import com.app.requestEntity.AddWordRequest;
@@ -16,5 +17,6 @@ public interface WordService {
 	public List<Word> getListWordLearnt(int userId);
     public boolean checkWordLearnt(int userId, int wordId);
 	public float getTopicStatus(int topicId,int userId);
+
 
 }

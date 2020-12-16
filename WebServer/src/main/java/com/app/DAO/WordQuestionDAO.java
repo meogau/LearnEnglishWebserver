@@ -24,6 +24,11 @@ public class WordQuestionDAO {
         return ques;
     }
 
+    /**
+     *
+     * @param wordId
+     * @return 
+     */
     public List<WordQuestion> getListQuestion(int wordId){
         String hql ="FROM WordQuestion q WHERE q.wordId = "+ wordId;
         return entityManager.createQuery(hql, WordQuestion.class).getResultList();

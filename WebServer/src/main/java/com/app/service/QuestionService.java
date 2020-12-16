@@ -28,4 +28,6 @@ public interface QuestionService {
 	public WordQuestion addWordQuestion(int wordId,int type, String question, String answerA, String answerB, String answerC, String answerD,
 									String correctAnswer);
 	public List<WordQuestion> getListQuestionInTopic(int topicId);
+	public List<GrammarQuestion> getListFirstTest();
+	public int markFirstTest(int userId, List<Answer> answerList);
 }
