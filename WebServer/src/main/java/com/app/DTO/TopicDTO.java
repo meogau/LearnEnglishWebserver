@@ -14,13 +14,13 @@ public class TopicDTO {
     private int topicId;
     private int levelId;
     private String name;
-    private String status;
+    private float status;
 
     public TopicDTO(Topic topic) {
         this.topicId = topic.getTopicId();
         this.levelId = topic.getLevelId();
         this.name = topic.getName();
-        this.status =null;
+        this.status =0;
     }
 
     public int getTopicId() {
@@ -47,11 +47,11 @@ public class TopicDTO {
         this.name = name;
     }
 
-    public String getStatus() {
+    public float getStatus() {
         return status;
     }
 
     public void setStatus(float status) {
-        this.status = df.format(status);
+        this.status = (status);
     }
 }
