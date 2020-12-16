@@ -139,5 +139,18 @@ public class QuestionServiceImpl implements QuestionService {
 		return wordQuestionDAO.addQuestion(wordId,type, question, answerA ,answerB, answerC , answerD, correctAnswer);
 	}
 
+	@Override
+	public List<WordQuestion> getListQuestionInTopic(int topicId) {
+		List<WordQuestion> wordQuestionList = new ArrayList<>();
+		List<Word> wordList = wordDAO.getListWord(topicId);
+		for(Word word : wordList){
+			List<WordQuestion> listQuestionPerWord = wordQuestionDAO.getListQuestion(word.getWordId());
+			for(WordQuestion wordQuestion : listQuestionPerWord){
+				wordQuestionList.add(wordQuestion);
+			}
+		}
+		return wordQuestionList;
+	}
+
 
 }

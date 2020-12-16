@@ -27,4 +27,5 @@ public interface QuestionService {
 	public GrammarQuestion updateGrammarQuestion(GrammarQuestion grammarQuestion);
 	public WordQuestion addWordQuestion(int wordId,int type, String question, String answerA, String answerB, String answerC, String answerD,
 									String correctAnswer);
+	public List<WordQuestion> getListQuestionInTopic(int topicId);
 }

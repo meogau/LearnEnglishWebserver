@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import com.app.DTO.QuestionDTO;
 import com.app.entity.GrammarQuestion;
 import com.app.entity.WordQuestion;
 import com.app.requestEntity.*;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -61,10 +63,14 @@ public class QuestionController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-    @RequestMapping("/get-list-word-question-by-user/{wordId}")
-    public ResponseEntity<?> getListWordQuestion(@PathVariable int wordId){
-
-        return ResponseEntity.ok(questionService.getListWordQuestion(wordId));
+    @RequestMapping("/get-list-word-question-by-user/{topicId}")
+    public ResponseEntity<?> getListWordQuestion(@PathVariable int topicId){
+        List<WordQuestion> wordQuestionList = questionService.getListQuestionInTopic(topicId);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        for(WordQuestion wordQuestion : wordQuestionList){
+            questionDTOList.add(new QuestionDTO(wordQuestion));
+        }
+        return ResponseEntity.ok(questionDTOList);
     }
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @RequestMapping("/check-answer-word-question")
