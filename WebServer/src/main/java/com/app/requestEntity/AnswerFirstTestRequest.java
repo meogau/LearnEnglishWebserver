@@ -14,11 +14,11 @@ public class AnswerFirstTestRequest {
         this.userId = userId;
     }
 
-    public List<Answer> getAnswerList() {
-        return listAnswer ;
+    public List<Answer> getListAnswer() {
+        return listAnswer;
     }
 
-    public void setAnswerList(List<Answer> answerList) {
-        this.listAnswer = answerList;
+    public void setListAnswer(List<Answer> listAnswer) {
+        this.listAnswer = listAnswer;
     }
 }

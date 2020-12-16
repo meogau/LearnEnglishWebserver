@@ -193,7 +193,7 @@ public ResponseEntity<?> getQuestionForFirstTest(){
     @RequestMapping("/mark-question-for-first-test")
     public ResponseEntity<?> markQuestionForFirstTest(@RequestBody AnswerFirstTestRequest answerFirstTestRequest){
         int userId = answerFirstTestRequest.getUserId();
-        List<Answer> answerList = answerFirstTestRequest.getAnswerList();
+        List<Answer> answerList = answerFirstTestRequest.getListAnswer();
         int point = questionService.markFirstTest(answerList);
         float status = (float)point/(float)(answerList.size());
         int levelUnlock =0;
@@ -201,7 +201,7 @@ public ResponseEntity<?> getQuestionForFirstTest(){
         else if (status>0.5) levelUnlock =3;
         else levelUnlock =2;
         userService.updateUnlockLevlel(userId,levelUnlock);
-        
+
         MessageAnswerResponse messageAnswerResponse = new MessageAnswerResponse();
         messageAnswerResponse.setPoint(point);
         messageAnswerResponse.setStatus(status);

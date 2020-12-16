@@ -17,8 +17,8 @@ public class UserServiceImpl  implements UserService {
     private UserInfoDAO userInfoDAO;
 
     @Override
-    public boolean addUserInfo(long userId) {
-        return userInfoDAO.addUserInfo(userId);
+    public boolean addUserInfo(long userId, String username) {
+        return userInfoDAO.addUserInfo(userId,username);
     }
 
     @Override
