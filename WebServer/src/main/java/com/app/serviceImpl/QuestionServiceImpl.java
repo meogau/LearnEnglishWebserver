@@ -171,14 +171,12 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public int markFirstTest(int userId, List<Answer> answerList) {
+	public int markFirstTest( List<Answer> answerList) {
 		int point =0;
 		for(Answer answer : answerList){
-			
+			if(checkAnswerGrammarQuestion(answer.getQuestionId(),answer.getAnswer())) point++;
 		}
-
-
-		return 0;
+		return point;
 	}
 
 

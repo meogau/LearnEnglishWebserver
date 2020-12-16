@@ -60,5 +60,10 @@ public class UserInfoDAO {
 		 userInfo.setUnlockLevel(userInfo.getUnlockLevel()+1);
 		 entityManager.merge(userInfo);
 	 }
+	public void updateUnlockLevlel(int userId,int levelUnlock){
+		UserInfo userInfo = getUserInfo(userId);
+		userInfo.setUnlockLevel(levelUnlock);
+		entityManager.merge(userInfo);
+	}
 
 }

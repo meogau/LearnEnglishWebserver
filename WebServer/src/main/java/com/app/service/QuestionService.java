@@ -29,5 +29,5 @@ public interface QuestionService {
 									String correctAnswer);
 	public List<WordQuestion> getListQuestionInTopic(int topicId);
 	public List<GrammarQuestion> getListFirstTest();
-	public int markFirstTest(int userId, List<Answer> answerList);
+	public int markFirstTest(List<Answer> answerList);
 }

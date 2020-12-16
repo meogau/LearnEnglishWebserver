@@ -13,4 +13,5 @@ public interface UserService {
     public UserInfo updateUserInfo(int userId, String name, String gender , Date birthday);
     public void updatePoint(int userId, int point);
     public void unlockLevel(int userId);
+    public void updateUnlockLevlel(int userId,int levelUnlock);
 }

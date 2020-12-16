@@ -189,4 +189,24 @@ public ResponseEntity<?> getQuestionForFirstTest(){
         }
         return ResponseEntity.ok(questionDTOList);
     }
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @RequestMapping("/mark-question-for-first-test")
+    public ResponseEntity<?> markQuestionForFirstTest(@RequestBody AnswerFirstTestRequest answerFirstTestRequest){
+        int userId = answerFirstTestRequest.getUserId();
+        List<Answer> answerList = answerFirstTestRequest.getAnswerList();
+        int point = questionService.markFirstTest(answerList);
+        float status = (float)point/(float)(answerList.size());
+        int levelUnlock =0;
+        if(status>0.75) levelUnlock=4;
+        else if (status>0.5) levelUnlock =3;
+        else levelUnlock =2;
+        userService.updateUnlockLevlel(userId,levelUnlock);
+        
+        MessageAnswerResponse messageAnswerResponse = new MessageAnswerResponse();
+        messageAnswerResponse.setPoint(point);
+        messageAnswerResponse.setStatus(status);
+        messageAnswerResponse.setPlusMark(levelUnlock);
+
+        return ResponseEntity.ok(messageAnswerResponse);
+    }
 }

@@ -50,4 +50,9 @@ public class UserServiceImpl  implements UserService {
     public void unlockLevel(int userId) {
      userInfoDAO.unlockLevel(userId);
     }
+
+    @Override
+    public void updateUnlockLevlel(int userId, int levelUnlock) {
+        userInfoDAO.updateUnlockLevlel(userId,levelUnlock);
+    }
 }
