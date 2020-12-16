@@ -12,4 +12,5 @@ public interface UserService {
     public List<UserInfo> getRank5();
     public UserInfo updateUserInfo(int userId, String name, String gender , Date birthday);
     public void updatePoint(int userId, int point);
+    public void unlockLevel(int userId);
 }

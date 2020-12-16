@@ -1,15 +1,14 @@
 package com.app.controller;
 
+import com.app.DAO.GrammarDAO;
+import com.app.DAO.TopicDAO;
 import com.app.DTO.QuestionDTO;
 import com.app.entity.GrammarQuestion;
 import com.app.entity.WordQuestion;
 import com.app.requestEntity.*;
 
 import com.app.responseEntity.MessageAnswerResponse;
-import com.app.service.GrammarService;
-import com.app.service.QuestionService;
-import com.app.service.UserService;
-import com.app.service.WordService;
+import com.app.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,6 +33,12 @@ public class QuestionController {
 
 	@Autowired
     private UserService userService;
+
+	@Autowired
+    LevelService levelService;
+	@Autowired
+    TopicService topicService;
+
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @RequestMapping("/add-grammar-question")
@@ -89,6 +94,10 @@ public class QuestionController {
        List<Answer> answerList = answerRequest.getListAnswer();
        int userId = answerRequest.getUserId();
        int grammarId = answerRequest.getGrammarId();
+        //check level status----------
+        int levelId = grammarService.findGrammarById(grammarId).getLevelId();
+        boolean levelStatusBefore = levelService.checkPassLevel(userId,levelId);
+        //----------------------------
         MessageAnswerResponse messageAnswerResponse = new MessageAnswerResponse();
         int point = questionService.markGrammarQuestion(answerList);
         messageAnswerResponse.setPoint(point);
@@ -98,7 +107,12 @@ public class QuestionController {
             messageAnswerResponse.setPlusMark(25);
             userService.updatePoint(userId,25);
         }
-      return ResponseEntity.ok(messageAnswerResponse);
+
+        //check level status after-----------------------------------------------
+        boolean levelStatusAfter = levelService.checkPassLevel(userId,levelId);
+        if(levelStatusAfter!=levelStatusBefore) userService.unlockLevel(userId);
+
+        return ResponseEntity.ok(messageAnswerResponse);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -116,13 +130,23 @@ public class QuestionController {
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @RequestMapping(value = "/mark-answer-topic-question",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> markTopicQuestion(@RequestBody AnswerTopicRequest answerRequest){
+
         List<Answer> answerList = answerRequest.getListAnswer();
         int userId = answerRequest.getUserId();
         int topicId = answerRequest.getTopicId();
+        //check level status----------
+        int levelId = topicService.findTopicById(topicId).getLevelId();
+        boolean levelStatusBefore = levelService.checkPassLevel(userId,levelId);
+        //----------------------------------------------
         int point = questionService.markTopicQuestion(answerList,topicId,userId);
         float status = wordService.getTopicStatus(topicId, userId);
         int plusMark = (int ) (point*0.25);
         userService.updatePoint(userId,plusMark);
+        //check level status after-----------------------------------------------
+        boolean levelStatusAfter = levelService.checkPassLevel(userId,levelId);
+        if(levelStatusAfter!=levelStatusBefore) userService.unlockLevel(userId);
+
+
         MessageAnswerResponse messageAnswerResponse = new MessageAnswerResponse(status,point,plusMark);
         return ResponseEntity.ok(messageAnswerResponse);
     }

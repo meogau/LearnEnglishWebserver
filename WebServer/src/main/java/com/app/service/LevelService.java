@@ -12,4 +12,5 @@ public interface LevelService {
  public Level deleteLevel(int levelId);
  public Level updateLevel(Level level);
  public List<Level> getListLevelByUser(int leverUnlock);
+ public boolean checkPassLevel(int userId, int LevelId);
 }

@@ -13,8 +13,7 @@ import java.util.List;
 public class LevelCompleteDAO {
 	@Autowired
 	private EntityManager entityManager;
-	
-	
+
 	public boolean addLevelComplete(int levelId,int userId) {
 		LevelComplete levelComplete = new LevelComplete(levelId, userId) ;
 		entityManager.persist(levelComplete);

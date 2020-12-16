@@ -1,7 +1,9 @@
 package com.app.serviceImpl;
 
 import com.app.DAO.TopicDAO;
+import com.app.DAO.WordDAO;
 import com.app.entity.Topic;
+import com.app.entity.Word;
 import com.app.requestEntity.AddTopicRequest;
 import com.app.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class TopicServiceImpl implements TopicService {
 
 	@Autowired
 	private TopicDAO topicDAO;
+	@Autowired
+	private WordDAO wordDAO;
 	
 	@Override
 	public Topic addTopic(AddTopicRequest addTopicRequest) {
@@ -42,5 +46,6 @@ public class TopicServiceImpl implements TopicService {
 	public Topic updateTopic(Topic topic) {
 		return topicDAO.updateTopic(topic);
 	}
+
 
 }

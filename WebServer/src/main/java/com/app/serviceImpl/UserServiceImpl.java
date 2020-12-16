@@ -45,4 +45,9 @@ public class UserServiceImpl  implements UserService {
     public void updatePoint(int userId, int point) {
         userInfoDAO.updatePlusPoint(userId,point);
     }
+
+    @Override
+    public void unlockLevel(int userId) {
+     userInfoDAO.unlockLevel(userId);
+    }
 }
