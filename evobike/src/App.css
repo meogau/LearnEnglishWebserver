@@ -6,8 +6,6 @@
 }
 
 .home,
-.services,
-.products,
 .sign-up {
   display: flex;
   height: 90vh;
