@@ -140,7 +140,7 @@ public class QuestionController {
         //----------------------------------------------
         int point = questionService.markTopicQuestion(answerList,topicId,userId);
         float status = wordService.getTopicStatus(topicId, userId);
-        int plusMark = (int ) (point*0.25);
+        int plusMark = (int ) (status*30);
         userService.updatePoint(userId,plusMark);
         //check level status after-----------------------------------------------
         boolean levelStatusAfter = levelService.checkPassLevel(userId,levelId);

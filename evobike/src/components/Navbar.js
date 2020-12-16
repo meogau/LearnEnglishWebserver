@@ -29,8 +29,8 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            EcoBikeRental
-            <i className="fas fa-bicycle"></i>
+            EnglishHub          
+                 <i class="fab fa-studiovinari"></i>
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -47,16 +47,17 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Services
+                Learn
               </Link>
             </li>
             <li className='nav-item'>
               <Link
+              //dan link vao day
                 to='/products'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Products
+                Rankking
               </Link>
             </li>
 
