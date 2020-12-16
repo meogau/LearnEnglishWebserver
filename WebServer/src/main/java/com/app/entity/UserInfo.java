@@ -29,7 +29,7 @@ public class UserInfo {
 		this.name = name;
 		this.gender = gender;
 		this.birthday = birthday;
-		this.unlockLevel = 1;
+		this.unlockLevel = 2;
 		this.score = 0;
 	}
 
